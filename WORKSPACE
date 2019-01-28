@@ -1,3 +1,9 @@
+##### GIT RULES #####
+
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+##### GO (inc DEP) RULES #####
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
@@ -76,6 +82,8 @@ go_repository(
     tag = "v2.2.2",
 )
 
+##### GO DOCKER RULES #####
+
 http_archive(
     name = "io_bazel_rules_docker",
     sha256 = "aed1c249d4ec8f703edddf35cbe9dfaca0b5f5ea6e4cd9e83e99f3b0d1136c3d",
@@ -86,3 +94,33 @@ http_archive(
 load("@io_bazel_rules_docker//go:image.bzl", _go_image_repos = "repositories")
 
 _go_image_repos()
+
+##### NODEJS BUILD RULES #####
+
+git_repository(
+    name = "build_bazel_rules_nodejs",
+    remote = "https://github.com/bazelbuild/rules_nodejs.git",
+    tag = "0.16.5",
+)
+
+load("@build_bazel_rules_nodejs//:package.bzl", "rules_nodejs_dependencies")
+
+rules_nodejs_dependencies()
+
+load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories")
+
+# NOTE: this rule installs nodejs, npm, and yarn, but does NOT install
+# your npm dependencies into your node_modules folder.
+# You must still run the package manager to do this.
+node_repositories(
+    package_json = ["//:app/package.json"],
+    node_version = "10.13.0",
+    yarn_version = "1.12.1",
+)
+load("@build_bazel_rules_nodejs//:defs.bzl", "yarn_install")
+
+yarn_install(
+    name = "npm",
+    package_json = "//:app/package.json",
+    yarn_lock = "//:app/yarn.lock",
+)
