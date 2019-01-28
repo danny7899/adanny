@@ -16,5 +16,8 @@ sudo chown -R vagrant $GOPATH
 sudo chgrp -R vagrant $GOPATH
 
 source $PROJECT_ROOT/vagrant/golang.sh
+source $PROJECT_ROOT/vagrant/docker.sh
+source $PROJECT_ROOT/vagrant/npm.sh
+source $PROJECT_ROOT/vagrant/bazel.sh
 
 sudo apt-get autoremove -y -q
