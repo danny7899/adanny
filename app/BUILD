@@ -1,0 +1,18 @@
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+  name = "node_modules",
+  srcs = glob(
+    ["node_modules/**/*"],
+    exclude=["node_modules/**/test/**"]
+    ),
+)
+
+load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
+
+nodejs_binary(
+    name = "app",
+    entry_point = "src/index",
+    node_modules = "//app:node_modules",
+    # data =  glob(["src/**", "public/**"]) + ["package.json", ".babelrc"],
+)
