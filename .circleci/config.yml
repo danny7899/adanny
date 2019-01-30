@@ -5,17 +5,20 @@ jobs:
     steps:
       - checkout
       - run:
+          # install Bazel using Vagrant's provisioning script
           name: Installing Bazel
           command: source vagrant/bazel.sh
       - run:
+          # test building www service
           name: Building //www
           command: bazel build //www
       - run:
+          # test building app service
           name: Building //app
           command: |
                 bazel build //app
-                bazel run @nodejs://yarn install --dev
-                bazel run @nodejs://yarn build
+                bazel run @nodejs//:yarn install -- --dev
+                bazel run @nodejs//:yarn build
 
 workflows:
   version: 2
