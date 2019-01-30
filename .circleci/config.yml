@@ -9,7 +9,9 @@ jobs:
           command: source vagrant/bazel.sh
       - run:
           name: Building //:www
-          command: bazel build //:www
+          command: |
+                ls
+                bazel build //:www
       - run:
           name: Building //:app
           command: |
