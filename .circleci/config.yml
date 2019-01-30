@@ -8,14 +8,12 @@ jobs:
           name: Installing Bazel
           command: source vagrant/bazel.sh
       - run:
-          name: Building //:www
-          command: |
-                ls
-                bazel build //:www
+          name: Building //www
+          command: bazel build //www
       - run:
-          name: Building //:app
+          name: Building //app
           command: |
-                bazel build //:app
+                bazel build //app
                 bazel run @nodejs://yarn install --dev
                 bazel run @nodejs://yarn build
 
