@@ -12,7 +12,10 @@ load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
 
 nodejs_binary(
     name = "app",
-    entry_point = "src/index",
+    entry_point = "adanny/app/src/index.js",
     node_modules = "//app:node_modules",
-    # data =  glob(["src/**", "public/**"]) + ["package.json", ".babelrc"],
+    # data =  glob(["src/**", "public/**"]),
+    data = [
+        "@//app:node_modules",
+    ],
 )

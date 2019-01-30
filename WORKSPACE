@@ -1,3 +1,4 @@
+workspace(name = "adanny")
 ##### GIT RULES #####
 
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
