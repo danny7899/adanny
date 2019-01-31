@@ -1,0 +1,65 @@
+{% extends "story5/_base.html" %}
+{% load static %}
+
+{% block prefix %}Schedule - {% endblock %}
+
+{% block content %}
+<main>
+    <div class="row-head">
+        <h1 class="headline center head-anim">SCHEDULE</h1>
+    </div>
+    <div class="row-mid">
+        <div class="container content-anim">
+            <div class="schedule-pane">
+                {% if schedule %}
+                    {% for event in schedule %}
+                        <div class="row category">
+                            <div class="card schedule-item shadow border-0" id="schedule-item">
+                                <div class="card-body row">
+                                    <div class="col-lg-3 col-sm-12 schedule-title-area">
+                                        <h5 class="schedule-name">{{ event.name }}</h5>
+                                        <span class="badge badge-pill badge-primary schedule-category" {{ event.category }}><i class="material-icons badge-icon">local_offer</i> {{ event.category }}</span>
+                                    </div>
+                                    <div class="col-lg-9 col-sm-12">
+                                        <div class="schedule-detail">
+                                            {{ event.time }} on {{ event.date }} @ {{ event.location }}
+                                        </div>
+                                        <div class="schedule-desc">
+                                            {{ event.desc }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3 class="light-notify">I'm free! No upcoming events!</h3>
+                {% endif %}
+                {% if schedule %}<a class="negative left-float" href="" data-toggle="modal" data-target="#exampleModal">remove all!</a>{% endif %}
+                <a class="right-float" href="{% url 'schedule-add' %}">add event!</a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Remove All Events</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to remove all listed events? This action is irreversible!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">No, keep all events</button>
+                            <a class="btn btn-danger" href="{% url 'schedule-removeall' %}">Yes</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-end empty"></div>
+</main>
+
+{% endblock %}
