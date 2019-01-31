@@ -37,6 +37,13 @@ Use `vagrant up` on the project's root dir to boot the dev environment. It may t
 
 Once it has done booting up, use `vagrant ssh` to ssh into the guest machine, all the project files will be placed at `~/go/src/adanny/`. It is all synced to those in your host machine.
 
+### Setting up `GOPATH` (optional)
+You may want to place the project on the desired project location for Go projects in the host's `GOPATH` directory. Make sure you have properly [setup the `GOPATH`](https://github.com/golang/go/wiki/SettingGOPATH) beforehand. 
+```bash
+mkdir -p $GOPATH/src/
+git clone git@github.com:danny7899/adanny.git $GOPATH/src/adanny.net/
+```
+
 <!-- ### MORE TO COMEEEE! -->
 
 ## More?
