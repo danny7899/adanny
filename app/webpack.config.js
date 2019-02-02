@@ -29,12 +29,19 @@ const config = {
         }
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      },
-      {
-        test: /\.less$/,
-        use: ["less-loader"]
+        test: /\.(css|less)$/,
+        use: [{
+          loader: "style-loader"
+        },
+        {
+          loader: "css-loader"
+        },
+        {
+          loader: "less-loader",
+          options: {
+            javascriptEnabled: true
+          }  
+        }]
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=.+)?$/,
