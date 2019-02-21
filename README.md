@@ -1,6 +1,6 @@
 # adanny *.net*
 
-[![CircleCI](https://circleci.com/gh/danny7899/adanny/tree/master.svg?style=svg)](https://circleci.com/gh/danny7899/adanny/tree/master)
+[![CircleCI](https://circleci.com/gh/daystram/adanny/tree/master.svg?style=svg)](https://circleci.com/gh/danny7899/adanny/tree/master)
 
 [*adanny*](https://adanny.net) is my personal profile page. ReactJS is used for the front-end and Go for the back-end. This is hosted on a Kubernetes platform, using microservices and monorepo pattern. Builds, tests, and deployment are handled using Bazel and CircleCI.
 
